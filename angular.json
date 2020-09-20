@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "crud"
+    }
+  },
+  "defaultProject": "crud",
+  "cli": {
+    "analytics": "6d3cef5d-4b56-4ee2-a040-f6f5947df64b"
+  }
 }
