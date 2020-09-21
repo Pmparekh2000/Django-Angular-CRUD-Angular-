@@ -1,0 +1,25 @@
+
+header {
+    background-color: aquamarine;
+    padding: 15px;
+}
+
+form {
+    margin-left: 20%;
+}
+
+.vl {
+    border-left: .5px solid lightgrey;
+    height: 100vh;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 5;
+  }
+.movieList {
+    margin-left: 20%;
+}
+
+.onHover {
+    cursor: pointer;
+}
