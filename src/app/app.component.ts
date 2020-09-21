@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(private api: ApiService) {
     this.getMovies();
-    this.selectedMovie = {id: -1, title: '', desc: '', year: 0};
+    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, image: ''};
   }
 
   getMovies = () => {
