@@ -1,6 +1,8 @@
+import { HttpErrorResponse, HttpEventType, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { of } from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import { ApiService } from './api.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,9 +13,9 @@ export class AppComponent {
   movies = [{title: 'test'}];
   selectedMovie;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private http: HttpClient) {
     this.getMovies();
-    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, image: ''};
+    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, image: File, email: ''};
   }
 
   getMovies = () => {
@@ -40,6 +42,11 @@ export class AppComponent {
     );
   }
 
+  //VALIDATE EMAIL
+  validateEmail() {
+    
+  }
+
   updateMovie = () => {
     this.api.updateMovie(this.selectedMovie).subscribe(
       data => {
@@ -56,6 +63,8 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email = "";
+
   }
 
   createMovie = () => {
@@ -73,6 +82,8 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email = "";
+    
   }
 
   deleteMovie = () => {
@@ -92,5 +103,30 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email = "";
   }
+
+  ///HANDLING FILE UPLOAD
+
+  selectedFile = null;
+
+  fileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload() {
+    let url = 'http://localhost:8000'
+    const fd = new FormData;
+    fd.append('file', this.selectedFile, this.selectedFile.name);
+    this.http.post(url, fd).subscribe(res => {
+      console.log(res)
+    })
+
+  }
+
+  sendEmailVerification(): void {
+
+  }
+
+  
 }

@@ -19,9 +19,14 @@
        <input class="form-control"  type="number" placeholder="Year" name="year" [(ngModel)]="selectedMovie.year"/><br>
     
       </div>
+      <div class="form-group">
+        <input required type="email" class="form-control" placeholder="Enter your Email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" [(ngModel)]="selectedMovie.email">
+      </div>
 
-      <div>
-        <input type="file" value="Upload image" class="btn-primary btn" [(ngModel)]="selectedMovie.image">
+      <div class="form-group mt-5">
+        <label ><h5>Upload Movie Thumbnail</h5></label>
+        <input type="file" class="form-control" [(ngModel)]="selectedMovie.image" >
+        <!-- <button class="btn btn-primary" (click)="onUpload()">Upload</button> -->
       </div>
       <br>
       <button class="btn btn-primary" *ngIf="selectedMovie.id != -1" (click)="updateMovie()">PUT</button>
@@ -40,6 +45,8 @@
         <h3 (click)="movieClicked(movie)" class="onHover">{{movie.title}}</h3>
       </li>
     </ul>
+      
+
   </div>
   
 </div>

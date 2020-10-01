@@ -26,7 +26,9 @@ export class ApiService {
   }
 
   createMovie(movie): Observable<any> {
-    const body = {title: movie.title, desc: movie.desc, year: movie.year};
+    console.log(movie);
+    
+    const body = {title: movie.title, desc: movie.desc, year: movie.year, email: movie.email, image: movie.image};
     return this.http.post(this.baseurl + '/movies/', body, {headers: this.httpHeaders});
   }
 
