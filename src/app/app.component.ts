@@ -13,13 +13,15 @@ export class AppComponent {
 
   constructor(private api: ApiService) {
     this.getMovies();
-    this.selectedMovie = {id: -1, title: '', desc: '', year: 0};
+    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, email: '', file: {}};
   }
 
   getMovies = () => {
     this.api.getAllMovies().subscribe(
       data => {
         this.movies = data;
+        console.log(data);
+        
       },
       error => {
         console.log(error);
@@ -56,9 +58,12 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email = "";
   }
 
   createMovie = () => {
+    console.log(this.selectedMovie);
+    
     this.api.createMovie(this.selectedMovie).subscribe(
       data => {
         this.movies.push(data);
@@ -73,6 +78,14 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email = "";
+  }
+
+  onChange (event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.selectedMovie.file = file;
+    }
   }
 
   deleteMovie = () => {
@@ -92,5 +105,18 @@ export class AppComponent {
     this.selectedMovie.title = "";
     this.selectedMovie.desc = "";
     this.selectedMovie.year = "";
+    this.selectedMovie.email ="";
+  }
+
+  readUrl(event: any) {
+    if(event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: ProgressEvent) => {
+        this.selectedMovie.url = (<FileReader>event.target).result;
+      }
+      console.log(this.selectedMovie.url);
+      
+    }
   }
 }

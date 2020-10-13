@@ -21,12 +21,13 @@ export class ApiService {
   }
 
   updateMovie(movie): Observable<any> {
-    const body = {title: movie.title, desc: movie.desc, year: movie.year};
+    const body = {title: movie.title, desc: movie.desc, year: movie.year, email: movie.email, file: movie.file[0].name};
+    // log
     return this.http.put(this.baseurl + '/movies/' + movie.id + '/', body, {headers: this.httpHeaders});
   }
 
   createMovie(movie): Observable<any> {
-    const body = {title: movie.title, desc: movie.desc, year: movie.year};
+    const body = {title: movie.title, desc: movie.desc, year: movie.year, email: movie.email, file: movie.file};
     return this.http.post(this.baseurl + '/movies/', body, {headers: this.httpHeaders});
   }
 
