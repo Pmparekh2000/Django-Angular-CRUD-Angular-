@@ -40,11 +40,11 @@
   <ul>
     <li *ngFor="let movie of movies">
       <h2 (click)="movieClicked(movie)"  style="cursor: pointer;">{{movie.title}}</h2>
-      <img src="{movie.file}"> 
+      <img style="height: 200px; width:200px"src="{{baseurl+movie.image}}">
     </li>
   </ul>
   <hr>
-  
+
   <!-- Title <input type="text" [(ngModel)]="selectedMovie.title"/><br>
   Description <input type="text" [(ngModel)]="selectedMovie.desc"/><br>
   Year <input type="date" [(ngModel)]="selectedMovie.year"/><br>

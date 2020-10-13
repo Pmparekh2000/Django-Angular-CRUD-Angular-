@@ -10,16 +10,18 @@ import { ApiService } from './api.service';
 export class AppComponent {
   movies = [{title: 'test'}];
   selectedMovie;
+  baseurl = 'http://localhost:8000';
 
   constructor(private api: ApiService) {
     this.getMovies();
-    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, email: '', file: {}};
+    this.selectedMovie = {id: -1, title: '', desc: '', year: 0, email: '', file: Image};
   }
 
   getMovies = () => {
     this.api.getAllMovies().subscribe(
       data => {
         this.movies = data;
+        // this.movies.file.
         console.log(data);
         
       },
@@ -84,6 +86,7 @@ export class AppComponent {
   onChange (event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      console.log(file);
       this.selectedMovie.file = file;
     }
   }
